@@ -149,6 +149,6 @@ Cookie::$salt = 'SolDlaCiasteczek';
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'welcome',
+		'controller' => 'home',
 		'action'     => 'index',
 	));
