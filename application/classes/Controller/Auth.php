@@ -45,7 +45,7 @@ class Controller_Auth extends Controller_Default{
     
     public function action_register(){
         
-        if(Auth::instance()->logged_in())
+        if(Auth::instance()->logged_in() && !Auth::instance()->logged_in('admin'))
         {
             $this->redirect('/');
         }
@@ -61,7 +61,8 @@ class Controller_Auth extends Controller_Default{
                 $role = ORM::factory('role','1');
                 $user->add('roles',$role);
                 $user->save();
-                
+                $this->session->set('contentmessage', array('success' => __('RegistrationSuccess')));
+
             }catch (ORM_Validation_Exception $e)
             {
                 $this->session->set('errors', $e->errors('models'));
@@ -73,6 +74,7 @@ class Controller_Auth extends Controller_Default{
                 $this->session->set('contentmessage', array('danger' => __('RegistrationError2')));
             }
             
+            if(Auth::instance()->logged_in('admin') && !empty($this->session->get('contentmessage')['success'])) $this->redirect('/administration/users');
             /*if($user)
             {
                 $client = ORM::factory('user');
@@ -103,6 +105,11 @@ class Controller_Auth extends Controller_Default{
         $client->save();*/
     }
     
+    }
+    
+    public function action_acces_denied(){
+        $this->template->content = 'auth/access_denied';
+        $this->template->title .= __('AccesDenied');
     }
     
 }
