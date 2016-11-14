@@ -5,20 +5,20 @@ defined('SYSPATH') or die('No direct script access.');
 // Ustawienia bazy na serwer zewnętrzny
 /*return array
     (
-    'default' => array(
-        'type' => 'PDO',
+    'default' => array
+    (
+        'type'       => 'MySQLi',
         'connection' => array(
-            'dsn' => 'mysql:host=sql309.rf.gd;dbname=rfgd_19065037_sklep',
-            'database' => 'rfgd_19065037_sklep',
-            'username' => 'rfgd_19065037',
-            'password' => 'kojkolo123',
+            'hostname'   => 'sql309.rf.gd',
+            'username'   => 'rfgd_19065037',
+            'password'   => 'kojkolo123',
             'persistent' => FALSE,
-            'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'), // SET UTF8                   
+            'database'   => 'rfgd_19065037_sklep',
         ),
         'table_prefix' => '',
-        'charset' => 'utf8',
-        'caching' => TRUE,
-    )*/
+        'charset'      => 'utf8',
+    ),
+);*/
 
  // Ustawienia bazy na serwer lokalny   
 return array

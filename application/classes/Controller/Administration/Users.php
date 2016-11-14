@@ -2,7 +2,7 @@
 
 class Controller_Administration_Users extends Controller_DefaultAdmin{
     public function action_index(){
-        $this->template->content = 'administration/users';
+        $this->template->content = 'administration/users/index';
         $this->template->title .= __('Users');
         
         $users = ORM::factory('user')->find_all();
@@ -10,7 +10,7 @@ class Controller_Administration_Users extends Controller_DefaultAdmin{
     }
     
     public function action_edit(){
-        $this->template->content = 'administration/useredit';
+        $this->template->content = 'administration/users/edit';
         $this->template->title .= __('UserEdit');
         
         $user = ORM::factory('user', $this->request->param('id'));

@@ -58,7 +58,7 @@ class Controller_Auth extends Controller_Default{
                 $user = new Model_User;
                 $user->create_user($this->request->post(), array('username', 'password', 'email'));
                 $user->save();
-                $role = ORM::factory('role','1');
+                $role = ORM::factory('Role','1');
                 $user->add('roles',$role);
                 $user->save();
                 $this->session->set('contentmessage', array('success' => __('RegistrationSuccess')));
