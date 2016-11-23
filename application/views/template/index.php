@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content="<?php echo $description; ?>">
     <title><?php echo $title; ?></title>
-    <base href="http://artykuly-dzieci.rf.gd">
+    <!--<base href="http://artykuly-dzieci.rf.gd">-->
+    <base href="http://localhost">
     <?php foreach ($styles as $file => $type) echo HTML::style($file, array('media' => $type)), PHP_EOL ?>
 <?php foreach ($scripts as $file) echo HTML::script($file), PHP_EOL ?>
   </head>

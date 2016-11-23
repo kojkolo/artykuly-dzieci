@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 )  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `category_products` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `categories_id` int(11) unsigned NOT NULL,
   `products_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
