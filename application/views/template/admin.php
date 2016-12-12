@@ -8,7 +8,7 @@
     <meta name="Description" content="<?php echo $description; ?>">
     <title>Admin + <?php echo $title; ?></title>
     <!--<base href="http://artykuly-dzieci.rf.gd">-->
-    <base href="http://localhost">
+    <base href="<?php echo URL::base(true); ?>">
     <?php foreach ($styles as $file => $type) echo HTML::style($file, array('media' => $type)), PHP_EOL ?>
 <?php foreach ($scripts as $file) echo HTML::script($file), PHP_EOL ?>
   

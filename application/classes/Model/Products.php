@@ -11,12 +11,14 @@ class Model_Products extends ORM{
             'foreign_key' => 'products_id',
             'far_key' => 'categories_id',
         ),
+        
     );
     
-    protected $_has_one = array(
+    protected $_belongs_to = array(
         'tax' => array(
             'model'   => 'Taxes',
-            'foreign_key' => 'id',
+            'foreign_key' => 'tax_id',
+            'far_key' => 'id',
         ),
     );
          

@@ -6,6 +6,8 @@ class Controller_Home extends Controller_Default {
         
         $this->template->title .= __('HomeIndex');
         $this->template->content = 'home/index';
+        
+        
     }
     
 

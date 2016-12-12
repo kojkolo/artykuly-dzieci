@@ -11,7 +11,7 @@
     <div class="text-danger">
         <?php echo Arr::get($errors, 'name');?>
     </div>
-    Description: <input type="text" name="description" value="" />
+    Description: <textarea name="description" cols="50" rows="5"></textarea>
     <div class="text-danger">
         <?php echo Arr::get($errors, 'description');?>
     </div>
@@ -33,7 +33,7 @@
         <option value ="<?php echo $t -> id;?>" ><?php echo $t -> name;?></option>
         <?php } ?>
     </select>
-    Kategoria: <select name ="categories[]" multiple="true">
+    Kategoria: <select name ="categories[]">
         <?php foreach($categories as $c){
         ?>
         <option value ="<?php echo $c -> id;?>" ><?php echo $c -> name;?></option>

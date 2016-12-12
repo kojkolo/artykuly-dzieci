@@ -15,7 +15,16 @@ class Controller_Auth extends Controller_Default{
             if($user)
             {
                 $this->session->set('message', array('success' => __('LoggedIn')));
-                $this->redirect = '/';
+                if($this->session->get('redirect'))
+                {
+                    $rd = $this->session->get('redirect');
+                    $this->session->delete('redirect');
+                    $this->redirect = $rd;
+                }
+                else
+                {
+                    $this->redirect = '/';
+                }
             }
             else
             {
@@ -62,6 +71,14 @@ class Controller_Auth extends Controller_Default{
                 $user->add('roles',$role);
                 $user->save();
                 $this->session->set('contentmessage', array('success' => __('RegistrationSuccess')));
+                
+                if($this->session->get('redirect'))
+                {
+                    Auth::instance()->login($this->request->post('username'), $this->request->post('password'));
+                    $rd = $this->session->get('redirect');
+                    $this->session->delete('redirect');
+                    $this->redirect = $rd;
+                }
 
             }catch (ORM_Validation_Exception $e)
             {
@@ -75,34 +92,7 @@ class Controller_Auth extends Controller_Default{
             }
             
             if(Auth::instance()->logged_in('admin') && !empty($this->session->get('contentmessage')['success'])) $this->redirect('/administration/users');
-            /*if($user)
-            {
-                $client = ORM::factory('user');
-                $client->email = $this->request->post('email');
-                $client->username = $this->request->post('username');
-                $client->password = $this->request->post('password');
-                $client->save();
-
-                $role = ORM::factory('role','1');
-                $client->add('roles',$role);
-                $client->save();
-                $this->session->set('message', array('success' => __('RegistrationSuccess')));
-                $this->redirect = '/';
-            }
-            else
-            {
-                $this->session->set('contentmessage', array('danger' => __('RegistrationError')));
-            }
-        }
-        /*$client = ORM::factory('user');
-        $client->email = "gurzigod@gmail.com";
-        $client->username = "gurzigod";
-        $client->password = "gurzigod";
-        $client->save();
-        
-        $role = ORM::factory('role','2');
-        $client->add('roles',$role);
-        $client->save();*/
+            
     }
     
     }

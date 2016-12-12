@@ -36,7 +36,10 @@ class Controller_Default extends Controller_Template {
             {
                 $this->redirect($this->redirect);
             }
-
+            
+            $categories = ORM::factory('Categories')->where('parent_id', '=', NULL)->find_all();
+            View::set_global('categories', $categories);
+            
             if($this->auto_render)
             {
                 $styles = array(
@@ -47,6 +50,7 @@ class Controller_Default extends Controller_Template {
                 $scripts = array(
                     'js/jquery.min.js',
                     'js/bootstrap.min.js',
+                    'js/scripts.js',
                 );
                 
                 $this->template->styles = array_merge( $this->template->styles, $styles);
@@ -55,25 +59,41 @@ class Controller_Default extends Controller_Template {
             $this->template->content = View::factory($this->template->content);
             
             if($this->session->get('contentmessage'))
-                $this->template->content->message = $this->session->get('contentmessage');
+                $this->template->message = $this->session->get('contentmessage');
             else
-                $this->template->content->message = array();
+                $this->template->message = array();
             
             if($this->session->get('errors'))
                 $this->template->content->errors = $this->session->get('errors');
             else
                 $this->template->content->errors = array();
             
-            if($this->session->get('message'))
+            /*if($this->session->get('message'))
                 $this->template->message = $this->session->get('message');
             else
-                $this->template->message = array();
-            
+                $this->template->message = array();*/
+                        $this->template->content->message = array();
             //$this->template->contentmessage = null;
             $this->session->delete('message');
             $this->session->delete('contentmessage');
             $this->session->delete('errors');
             parent::after();
+        }
+        
+        protected function addToCart($id, $quantity){
+            $cart = $this->session->get('shopCart');
+            
+            if($cart == NULL)
+            {
+                $cart = array();
+            }
+            
+            if($quantity == 0)
+                unset($cart[$id]);
+            else
+                $cart[$id] = $quantity;
+
+            $this->session->set('shopCart', $cart);
         }
     
 }

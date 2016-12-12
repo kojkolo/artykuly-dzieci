@@ -15,9 +15,15 @@ class Model_Categories extends ORM{
         'childs' => array(
             'model' => 'categories',
             'foreign_key' => 'parent_id'
-        )
+        ),
+        'products' => array(
+            'model'   => 'Products',
+            'through' => 'category_products',
+            'foreign_key' => 'categories_id',
+            'far_key' => 'products_id',
+        ),
     );
-    
+
     public function rules(){
         return array(
             'name' => array(

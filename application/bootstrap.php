@@ -160,6 +160,18 @@ Route::set('access_denied', 'access_denied')
 		'action'     => 'acces_denied',
 	));
 
+Route::set('products', 'products(/<name>(/<id>))')
+	->defaults(array(
+		'controller' => 'Products',
+		'action'     => 'index',
+	));
+
+Route::set('product', 'product(/<name>(/<id>))')
+	->defaults(array(
+		'controller' => 'Products',
+		'action'     => 'show',
+	));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',
