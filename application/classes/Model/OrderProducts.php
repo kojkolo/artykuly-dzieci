@@ -11,14 +11,13 @@ class Model_OrderProducts extends ORM{
         ),
         'product' => array(
             'model' => 'Products',
-            'foreign_key' => 'id'
+            'foreign_key' => 'product_id',
+            'far_key' => 'id',
         ),
-    );
-    
-    protected $_has_one = array(
         'tax' => array(
-            'model'       => 'Taxes',
-            'foreign_key' => 'id',
+            'model'   => 'Taxes',
+            'foreign_key' => 'tax_id',
+            'far_key' => 'id',
         ),
     );
        

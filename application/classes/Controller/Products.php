@@ -41,6 +41,7 @@ $sql = "SELECT `p`.* FROM `category_products` as `cp` LEFT JOIN `categories` as 
         
         if($_POST){
             $this->addToCart($this->request->param('id'), $this->request->post('quantity'));
+            $this->redirect('shopCart');
         }
         //print_r($this->session->get('shopCart'));
         //$this->session->delete('shopCart');

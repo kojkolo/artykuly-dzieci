@@ -14,16 +14,41 @@
   </head>
   <body>
       <div class="container">
-          <?php if(Auth::instance()->logged_in()){ ?>
-          <a href="auth/logout">Wyloguj</a>
+          
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">ArtykułyDzieci</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="navbar-form navbar-right">
           <?php if(Auth::instance()->logged_in('admin')){ ?>
-          | <a href="administration">Panel administracyjny</a>
-          <?php }
-          } else{ ?>
-          <a href="auth/login">Zaloguj</a> | <a href="auth/register">Rejestracja</a>
+          <a href="administration/dashboard" type="submit" class="btn btn-info">Panel administracyjny</a>
+          
+          <?php }?>
+          <?php if(Auth::instance()->logged_in()){ ?>
+          <a href="shopcart" type="submit" class="btn btn-primary">Koszyk</a>
+          <a href="auth/logout" type="submit" class="btn btn-default">Wyloguj się</a>
+          <?php } else { ?>
+        <a href="auth/login" type="submit" class="btn btn-success">Zaloguj się</a>
+        <a href="auth/register" type="submit" class="btn btn-warning">Rejestracja</a>
           <?php } ?>
-<div class="container">
-      <div class="row">
+      </div>    
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+          <div class="row">
         <div class="col-sm-3 col-md-3">
           <?php 
         function subcates($sc){
@@ -71,7 +96,7 @@
           </div>
         </div>
       </div>
-    </div>
+
 
 
     

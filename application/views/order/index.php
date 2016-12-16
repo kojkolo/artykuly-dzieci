@@ -32,9 +32,9 @@
         </div>
       </div>
         <div class="form-group">
-        <label for="street_number" class="col-sm-2 control-label">Kod pocztowy*</label>
+        <label for="postal_code" class="col-sm-2 control-label">Kod pocztowy*</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="street_number" id="street_number" placeholder="12-345">
+          <input type="text" class="form-control" name="postal_code" id="street_number" placeholder="12-345">
         </div>
       </div>
         <div class="form-group">
