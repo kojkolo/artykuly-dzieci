@@ -12,7 +12,7 @@
             <tr>
                 <td class="middle"><img id="myImg" src="uploads/<?php echo $product->image;?>" alt="<?php echo $product->name;?>" /></td>
                 <td><h4><?php echo $product->name;?></h4></td>
-                <td class="middle"><h6><?php echo NUM::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
+                <td class="middle"><h6><?php echo Num::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
                     <h6><?php echo $product->netto_price;?>PLN <small>Netto</small></h6>
                     </td>
             </tr>

@@ -35,8 +35,8 @@
           <a href="administration/dashboard" type="submit" class="btn btn-info">Panel administracyjny</a>
           
           <?php }?>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Koszyk (<?php echo $shopCartCount;?>)</button>
           <?php if(Auth::instance()->logged_in()){ ?>
-          <a href="shopcart" type="submit" class="btn btn-primary">Koszyk</a>
           <a href="auth/logout" type="submit" class="btn btn-default">Wyloguj się</a>
           <?php } else { ?>
         <a href="auth/login" type="submit" class="btn btn-success">Zaloguj się</a>
@@ -56,7 +56,7 @@
                         foreach($sc as $subcategory){?>
 
             <li class="list-group-item"><span class="glyphicon glyphicon-menu-right">
-                  </span><a href="<?php echo URL::site('products/'.URL::title(UTF8::transliterate_to_ascii($subcategory->name)).'/'.$subcategory->id); ?>"><?php echo $subcategory->name;?></a>
+                  </span><a href="<?php echo URL::site('products/'.URL::title(UTF8::transliterate_to_ascii($subcategory->name)).'/'.$subcategory->id); ?>" class="link"><?php echo $subcategory->name;?></a>
                             
                         <?php if(count($subcategory->childs->find_all()))subcates($subcategory->childs->find_all());
                         }
@@ -70,7 +70,7 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <span class="glyphicon glyphicon-folder-open">
-                  </span><a href="<?php echo URL::site('products/'.URL::title(UTF8::transliterate_to_ascii($category->name)).'/'.$category->id); ?>"><?php echo $category->name;?></a>
+                  </span><a href="<?php echo URL::site('products/'.URL::title(UTF8::transliterate_to_ascii($category->name)).'/'.$category->id); ?>" class="link"><?php echo $category->name;?></a>
                 </h4>
               </div>
               <div class="panel-collapse collapse in">
@@ -91,15 +91,71 @@
 <div class="alert alert-<?php echo $k;?>" role="alert"><?php echo $v;?></div>
 <?php endforeach; ?>
 
-          <div class="panel panel-default">
+          <div class="panel panel-default" id="categoryContent">
               <?php echo $content; ?>
           </div>
         </div>
       </div>
 
-
-
-    
       </div>
+      
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Podgląd koszyka</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover productscart">
+        <thead>
+            <th></th>
+            <th>Nazwa produktu</th>
+            <th>Ilość</th>
+            <th>Koszt</th>
+        </thead>
+        <tbody>
+            <?php 
+            $count = 0;
+            $totalcostnetto = 0.00;
+            $totalcost = 0.00;
+            foreach($productsGlobal as $product){
+                ?>
+            <tr>
+                <td class="middle"><a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->name)).'/'.$product->id); ?>"><img src="uploads/<?php echo $product->image;?>" alt="" /></a></td>
+                <td><a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->name)).'/'.$product->id); ?>"><h4><?php echo $product->name;?></h4></a></td>
+                <td class="middle text-center">
+                        <p><?php echo $shopCartGlobal[$product->id]; ?></p>
+                </td>
+                <td class="middle"><h6><?php $pr = Num::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3)*$shopCartGlobal[$product->id]; echo $pr;?>PLN <small>Brutto (<?php echo $product->tax->rate;?>%)</small></h6>
+                    <h6><?php $pr2 = $product->netto_price*$shopCartGlobal[$product->id]; echo $pr2;?>PLN <small>Netto</small></h6>
+                </td>
+            </tr>
+            <?php 
+            
+                $totalcost += $pr;
+                $totalcostnetto += $pr2;
+                $count += $shopCartGlobal[$product->id];
+            } ?>
+        </tbody>
+        <tfoot class="panel-footer">
+            <tr>
+                <td colspan="2" class="text-right middle">Suma:</td>
+                <td class="middle text-center"><?php echo $count; ?></td>
+                <td class="middle"><h6><?php echo $totalcost;?>PLN <small>Brutto</small></h6>
+                    <h6><?php echo $totalcostnetto;?>PLN <small>Netto</small></h6></td>
+            </tr>
+        </tfoot>
+    </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+        <a href="shopCart" type="button" class="btn btn-primary">Przejdź do pełnego koszyka</a>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>

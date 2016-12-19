@@ -37,11 +37,11 @@
             <tr>
                 <td class="middle"></td>
                 <td><a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->product->name)).'/'.$product->product->id); ?>"><h4><?php echo $product->product->name;?></h4></a></td>
-                <td class="middle"><h6><?php echo NUM::round_up($product->pcs_price+($product->pcs_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
+                <td class="middle"><h6><?php echo Num::round_up($product->pcs_price+($product->pcs_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
                     <h6><?php echo $product->pcs_price;?>PLN <small>Netto</small></h6>
                 </td>
                 <td class="quantity middle text-center"><?php echo $product->quantity; ?></td>
-                <td class="middle"><h6><?php $pr = NUM::round_up($product->pcs_price+($product->pcs_price*$product->tax->rate/100), 3)*$product->quantity; echo $pr;?>PLN <small>Brutto (<?php echo $product->tax->rate;?>%)</small></h6>
+                <td class="middle"><h6><?php $pr = Num::round_up($product->pcs_price+($product->pcs_price*$product->tax->rate/100), 3)*$product->quantity; echo $pr;?>PLN <small>Brutto (<?php echo $product->tax->rate;?>%)</small></h6>
                     <h6><?php $pr2 = $product->pcs_price*$product->quantity; echo $pr2;?>PLN <small>Netto</small></h6>
                 </td>
             </tr>

@@ -18,7 +18,7 @@
                 <td class="middle"><img src="uploads/<?php echo $product->image;?>" alt="" /></td>
                 <td><h4><?php echo $product->name;?></h4><br/>
                 <?php echo substr($product->description, 0, 150);?>...</td>
-                <td class="middle"><h6><?php echo NUM::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
+                <td class="middle"><h6><?php echo Num::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
                     <h6><?php echo $product->netto_price;?>PLN <small>Netto</small></h6>
                     <a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->name)).'/'.$product->id); ?>" class="btn btn-info">WIĘCEJ</a></td>
             </tr>

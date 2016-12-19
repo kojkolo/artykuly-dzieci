@@ -3,7 +3,7 @@
 defined('SYSPATH') or die('No direct script access.');
 
 // Ustawienia bazy na serwer zewnętrzny
-/*return array
+return array
     (
     'default' => array
     (
@@ -18,8 +18,8 @@ defined('SYSPATH') or die('No direct script access.');
         'table_prefix' => '',
         'charset'      => 'utf8',
     ),
-);*/
-
+);
+/*
  // Ustawienia bazy na serwer lokalny   
 return array
     (
@@ -36,4 +36,4 @@ return array
         'table_prefix' => '',
         'charset'      => 'utf8',
     ),
-);
+);*/

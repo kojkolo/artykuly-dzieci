@@ -160,6 +160,12 @@ Route::set('access_denied', 'access_denied')
 		'action'     => 'acces_denied',
 	));
 
+Route::set('ajaxproducts', 'ajax/products(/<name>(/<id>))')
+	->defaults(array(
+		'controller' => 'Ajax',
+		'action'     => 'index',
+	));
+
 Route::set('products', 'products(/<name>(/<id>))')
 	->defaults(array(
 		'controller' => 'Products',

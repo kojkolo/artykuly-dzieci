@@ -9,4 +9,18 @@ $(".quantity").hover(
        $(this).children(".quantityform").hide();
     }
 );
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+});
+
+$(".link").click(function (event) {
+     var url = $(this).attr('href');
+    $.get( "ajax"+url, function( data ) {
+      $( "#categoryContent" ).html( data );
+    });
+    event.preventDefault();
+     event.stopPropagation();
+});
+
 });

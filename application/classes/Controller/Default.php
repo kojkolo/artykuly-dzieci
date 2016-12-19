@@ -77,6 +77,29 @@ class Controller_Default extends Controller_Template {
             $this->session->delete('message');
             $this->session->delete('contentmessage');
             $this->session->delete('errors');
+            
+            
+            $sql = "SELECT * FROM `products` WHERE id IN "; //(1, 3)
+        
+       $dd = '(';
+       $cart = $this->session->get('shopCart');
+       if($cart != NULL){
+        foreach($cart as $k => $v){
+            $dd .= $k.', ';
+        }
+       }
+        $dd .= 'null)';
+        
+        $sql .= $dd;
+        
+        //echo $sql;
+
+        $results = DB::query(Database::SELECT, $sql)->as_object('Model_Products')->execute();
+        
+        View::set_global('shopCartGlobal', $cart);
+        View::set_global('productsGlobal', $results);
+            
+            $this->template->shopCartCount = count($this->session->get('shopCart'));
             parent::after();
         }
         

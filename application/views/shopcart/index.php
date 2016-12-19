@@ -28,7 +28,7 @@
             <tr>
                 <td class="middle"><a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->name)).'/'.$product->id); ?>"><img src="uploads/<?php echo $product->image;?>" alt="" /></a></td>
                 <td><a href="<?php echo URL::site('product/'.URL::title(UTF8::transliterate_to_ascii($product->name)).'/'.$product->id); ?>"><h4><?php echo $product->name;?></h4></a></td>
-                <td class="middle"><h6><?php echo NUM::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
+                <td class="middle"><h6><?php echo Num::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3);?>PLN <small>Brutto</small></h6>
                     <h6><?php echo $product->netto_price;?>PLN <small>Netto</small></h6>
                 </td>
                 <td class="quantity middle text-center">
@@ -39,7 +39,7 @@
                             <input type="submit" class="btn btn-xs btn-danger btn-block" value="zmień" />
                         </form>
                 </td>
-                <td class="middle"><h6><?php $pr = NUM::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3)*$shopCart[$product->id]; echo $pr;?>PLN <small>Brutto (<?php echo $product->tax->rate;?>%)</small></h6>
+                <td class="middle"><h6><?php $pr = Num::round_up($product->netto_price+($product->netto_price*$product->tax->rate/100), 3)*$shopCart[$product->id]; echo $pr;?>PLN <small>Brutto (<?php echo $product->tax->rate;?>%)</small></h6>
                     <h6><?php $pr2 = $product->netto_price*$shopCart[$product->id]; echo $pr2;?>PLN <small>Netto</small></h6>
                 </td>
             </tr>

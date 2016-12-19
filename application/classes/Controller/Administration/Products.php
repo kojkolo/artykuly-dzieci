@@ -6,7 +6,7 @@ class Controller_Administration_Products extends Controller_DefaultAdmin{
         $this->template->content = 'administration/products/index';
         $this->template->title .= __('Products');
         
-        $products = ORM::factory('products')->find_all();
+        $products = ORM::factory('Products')->find_all();
 
         View::set_global('products', $products);
     }
